@@ -1,11 +1,11 @@
 const initialState =  [
   {
-    id: 123,
-    url: "https://i.redditmedia.com/Ara_qc1bxuYpcZCKGrS2BvAiPfrMzvjG4oSUPBbBvDc.jpg?s=eba550a040588e7996d7b7ed750823b1",
+    id: 1,
+    url: 'https://media.giphy.com/media/WbE2sL5jyKqeA/giphy.gif',
   },
   {
-    id: 124,
-    url: "https://i.redditmedia.com/e4NTkVHbzIm3Vt_qmbyIlYtUT9AnI08rpCL11vKruXU.jpg?s=5a233a6be970ee9e624ba68423b90b6d",
+    id: 2,
+    url: 'https://media.giphy.com/media/WbE2sL5jyKqeA/giphy.gif',
   },
 ];
 

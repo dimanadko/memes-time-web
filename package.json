@@ -1,7 +1,7 @@
 {
   "name": "memes-time-web",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -11,6 +11,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "precommit": "npm run lint"
+
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.12.1",
+    "eslint-config-metarhia": "^2.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.5.1"
   }
 }

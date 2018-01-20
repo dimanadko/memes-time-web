@@ -1,7 +1,7 @@
 // import getMemeCpouple from '../api';
 
- export default  function memeCoupleAction() {
-   return (dispatch)=>{
+ export default  function memeCoupleAction(dispatch) {
+     console.log('memeCoupleAction');
      const promise = new Promise((resolve) => {
        setTimeout(
          () => resolve({
@@ -16,11 +16,10 @@
                url: "https://i.redditmedia.com/e4NTkVHbzIm3Vt_qmbyIlYtUT9AnI08rpCL11vKruXU.jpg?s=5a233a6be970ee9e624ba68423b90b6d",
              },
            ],
-         }), 4000
+         }), 1000
        );
      });
      promise.then(
-       result => dispatch(result.memes)
+       (result) => (dispatch(result))
      );
-   }
  }

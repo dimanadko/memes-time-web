@@ -11,26 +11,25 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 3fr',
     borderBottom: '2px solid #7f8c8d',
-    height: '13vw',
+    height: '160px',
     '& span': {
-      fontSize: '6vw',
+      fontSize: '70px',
       color: 'white',
     },
   },
-  navContainer: {
-    position: 'relative',
-  },
   sideLogo: {
-    height: '100%',
-    width: '65%',
-    borderRadius: '45%',
-    paddingLeft: '20%',
-    paddingTop: '1%',
+    height: '140px',
+    borderRadius: '80px',
+    marginTop: '3%',
+    marginLeft: '20%',
     overflow: 'visible',
   },
   title: {
-    width:'66%',
+    width: '66%',
     textAlign: 'center',
+  },
+  headerContent: {
+    display: 'grid',
   },
 };
 
@@ -42,13 +41,14 @@ class HeaderComponent extends Component {
         <div>
           <img className={classes.sideLogo} src={image} />
         </div>
-        <div className={classes.title}>
-          <span>Memes Time</span>
-          <img  src={logo} />
-        </div>
-        <div />
-        <div className={classes.navContainer}>
-          <HeaderNav />
+        <div className={classes.headerContent}>
+          <div className={classes.title}>
+            <span>Memes Time</span>
+            <img  src={logo} />
+          </div>
+          <div>
+            <HeaderNav />
+          </div>
         </div>
       </header>
     );

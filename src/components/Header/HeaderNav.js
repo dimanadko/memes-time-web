@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 
 const styles = {
   buttonContainer: {
-    position: 'absolute',
-    bottom: '0',
-    right: '0',
-    height: '50px',
+    float: 'right',
+    height: '100%',
     width: '400px',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
@@ -24,7 +22,7 @@ const styles = {
     textDecoration: 'none',
     backgroundColor: '#ecf0f1',
     '&:first-child': {
-      borderTopLeftRadius: '10px',
+      borderTopLeftRadius: '25px',
     },
   },
 };

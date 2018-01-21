@@ -18,7 +18,6 @@ ReactDOM.render((
   <Provider store={store}>
     <BrowserRouter>
       <div style={{
-        backgroundColor: '#ecf0f1',
         width: '960px',
         height: '100%',
         margin: 'auto',

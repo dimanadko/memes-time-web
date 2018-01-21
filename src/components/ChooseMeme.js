@@ -9,6 +9,7 @@ const styles = {
     padding: '0 0',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
+    marginTop: '0',
     '& li': {
       border: '10px double white',
       padding: '30px 10px',
@@ -24,6 +25,8 @@ const styles = {
     verticalAlign: 'center',
   },
   memeChooserContainer: {
+    width: '960px',
+    backgroundColor: '#ecf0f1',
     height: '100%',
     margin: 'auto',
   },
@@ -48,7 +51,10 @@ class ChooseMeme extends Component {
     const { classes } = this.props;
     const memes = this.props.memeCouple.map(meme => (
       <li key={meme.id}>
-        <img src={meme.url} className={classes.memeImg} onClick={this.handleMemeClick}/>
+        <img
+          src={meme.url} className={classes.memeImg}
+          onClick={this.handleMemeClick}
+        />
       </li>
     ));
     return (

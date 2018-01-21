@@ -10,11 +10,14 @@ import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
 
+import HeaderComponent from './components/Header/HeaderComponent.js'
+
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render((
   <Provider store={store}>
     <Fragment>
+      <HeaderComponent />
       <App />
     </Fragment>
   </Provider>

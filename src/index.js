@@ -22,7 +22,7 @@ ReactDOM.render((
     <BrowserRouter>
       <div style={{
         backgroundColor: '#ecf0f1',
-        width: '960px',
+        width: '100%',
         height: '100%',
         margin: 'auto',
       }}

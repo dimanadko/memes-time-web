@@ -18,9 +18,10 @@ ReactDOM.render((
   <Provider store={store}>
     <BrowserRouter>
       <div style={{
+        height: '100vh',
         width: '960px',
-        height: '100%',
         margin: 'auto',
+        overflow: 'hidden',
       }}
       >
         <HeaderComponent />

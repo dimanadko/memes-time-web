@@ -7,9 +7,9 @@ const styles = {
     left: '0',
     bottom: '0',
     height: '100px',
-    backgroundColor: '#f39c12',
+    backgroundColor: '#c0392b',
     borderTop: '2px solid #7f8c8d',
-
+    marginTop: '-260px',
   },
 };
 

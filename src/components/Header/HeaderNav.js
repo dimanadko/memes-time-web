@@ -20,7 +20,7 @@ const styles = {
     borderColor: '#7f8c8d',
     textAlign: 'center',
     textDecoration: 'none',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#ffff',
     '&:first-child': {
       borderTopLeftRadius: '25px',
     },

@@ -3,11 +3,12 @@ import HeaderNav from './HeaderNav';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
 import logo from './Clock.svg';
+import cock from './cock.svg';
 import image from './Cat.jpeg';
 
 const styles = {
   header: {
-    backgroundColor: '#f39c12',
+    backgroundColor: '#c0392b',
     display: 'grid',
     gridTemplateColumns: '1fr 3fr',
     borderBottom: '2px solid #7f8c8d',
@@ -25,11 +26,17 @@ const styles = {
     overflow: 'visible',
   },
   title: {
-    width: '66%',
+    display: 'grid',
+    gridTemplateColumns: '2fr 1fr',
     textAlign: 'center',
   },
   headerContent: {
     display: 'grid',
+  },
+  cock: {
+    height: '50px',
+    float: 'right',
+    color: '#7f8c8d',
   },
 };
 
@@ -43,8 +50,16 @@ class HeaderComponent extends Component {
         </div>
         <div className={classes.headerContent}>
           <div className={classes.title}>
-            <span>Memes Time</span>
-            <img  src={logo} />
+            <div>
+              <span>Memes Time</span>
+              <img  src={logo} />
+            </div>
+            <div>
+              <img
+                src={cock}
+                className={classes.cock}
+              />
+            </div>
           </div>
           <div>
             <HeaderNav />

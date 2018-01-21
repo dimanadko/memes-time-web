@@ -9,11 +9,8 @@ import ChooseMeme from './components/ChooseMeme';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
-import Header from './components/Header';
 import Footer from './components/Footer';
-
-
-import HeaderComponent from './components/Header/HeaderComponent.js'
+import HeaderComponent from './components/Header/HeaderComponent.js';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -22,7 +19,7 @@ ReactDOM.render((
     <BrowserRouter>
       <div style={{
         backgroundColor: '#ecf0f1',
-        width: '100%',
+        width: '960px',
         height: '100%',
         margin: 'auto',
       }}

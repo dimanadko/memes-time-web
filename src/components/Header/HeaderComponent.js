@@ -1,48 +1,57 @@
 import React, { Component } from 'react';
-import './Header.css';
+import HeaderNav from './HeaderNav';
+import injectSheet from 'react-jss';
+import PropTypes from 'prop-types';
 import logo from './Clock.svg';
 import image from './Cat.jpeg';
-import mem from './Mem.jpg';
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: 0,
-    }
-  }
-
-  render() {
-    return (
-      <div className='button-container'>
-      <button className='button-react' onClick={() => this.setState({clicked: 1})}>
-        Выбрать мемчанского
-      </button>
-      <span> </span>
-      <button className='button-react' onClick={() => this.setState({clicked: 2})}>
-        Посмотреть статистику
-      </button>
-      </div>
-    )
-  }
+const styles = {
+  header: {
+    backgroundColor: '#f39c12',
+    display: 'grid',
+    gridTemplateColumns: '1fr 3fr',
+    borderBottom: '2px solid #7f8c8d',
+    '& span': {
+      fontSize: '6vw',
+      color: 'white',
+    },
+  },
+  navContainer: {
+    position: 'relative',
+  },
+  sideLogo: {
+    height: '100%',
+    width: '65%',
+    borderRadius: '45%',
+    paddingLeft: '20%',
+    paddingTop: '1%',
+    overflow: 'visible',
+  },
 };
 
-export default class HeaderComponent extends React.Component {
+class HeaderComponent extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <header>
-        <div className='left-header'>
-          <img className='side-logo' src={image} />
+      <header className={classes.header}>
+        <div>
+          <img className={classes.sideLogo} src={image} />
         </div>
-        <div className='right-header'>
-          <div className='article'>
-            <span>Memes Time</span>
-            <img className='main-logo' src={logo} />
-          </div>
-          <img className='mem-logo' src={mem} />
-        <Buttons />
+        <div>
+          <span>Memes Time</span>
+          <img  src={logo} />
+        </div>
+        <div />
+        <div className={classes.navContainer}>
+          <HeaderNav />
         </div>
       </header>
-    )
+    );
   }
 }
+
+HeaderComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default injectSheet(styles)(HeaderComponent);

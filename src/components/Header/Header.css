@@ -1,0 +1,73 @@
+span {
+  font-size: 6vw;
+  color: white;
+}
+
+header {
+  height: 20vh;
+  width: 100%;
+}
+
+.left-header {
+  height: inherit;
+  background-color: red;
+  width: 20vw;
+  position: absolute;
+  float: left;
+}
+
+.right-header {
+  height: inherit;
+  background-color: red;
+  width: 80vw;
+  float: right;
+}
+
+.article {
+  border: none;
+  position: absolute;
+  top: 0%;
+  left: 25%;
+}
+
+.main-logo {
+  height: 7vw;
+  position: absolute;
+}
+
+.side-logo {
+  height: 97%;
+  width: 65%;
+  border-radius: 45%;
+  padding-left: 20%;
+  padding-top: 1%;
+  overflow: visible;
+}
+
+.mem-logo {
+  float: right;
+  height: 95%;
+  padding-right: 8%;
+  padding-top: 0.5%;
+}
+
+.button-container {
+  height: inherit;
+  width: 80vw;
+}
+
+.button-react {
+  font-size: 1.5vw;
+  text-align: center;
+  width: 20%;
+  position: relative;
+  left: 13%;
+  top: 26%;
+  background-color: white;
+  border: none;
+}
+.button-react:active{
+  border: none;
+  shadow: none;
+  text-decoration: none;
+}

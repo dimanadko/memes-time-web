@@ -13,6 +13,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 
+import HeaderComponent from './components/Header/HeaderComponent.js'
+
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render((
@@ -25,7 +27,7 @@ ReactDOM.render((
         margin: 'auto',
       }}
       >
-        <Header />
+        <HeaderComponent />
         <Switch>
           <Route exact path="/" component={ChooseMeme} />
         </Switch>

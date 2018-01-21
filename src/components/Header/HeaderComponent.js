@@ -11,6 +11,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 3fr',
     borderBottom: '2px solid #7f8c8d',
+    height: '13vw',
     '& span': {
       fontSize: '6vw',
       color: 'white',
@@ -27,6 +28,10 @@ const styles = {
     paddingTop: '1%',
     overflow: 'visible',
   },
+  title: {
+    width:'66%',
+    textAlign: 'center',
+  },
 };
 
 class HeaderComponent extends Component {
@@ -37,7 +42,7 @@ class HeaderComponent extends Component {
         <div>
           <img className={classes.sideLogo} src={image} />
         </div>
-        <div>
+        <div className={classes.title}>
           <span>Memes Time</span>
           <img  src={logo} />
         </div>

@@ -28,5 +28,10 @@
     "eslint-config-metarhia": "^2.0.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.5.1"
+  },
+  "proxy": {
+    "/getMemes": {
+      "target": "http://10.2.0.118:3000"
+    }
   }
 }

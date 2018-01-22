@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
 import './index.css';
-import RegisterForm from './components/RegisterForm.js'
+import LoginForm from './components/LoginForm.js';
 
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
@@ -23,7 +23,7 @@ ReactDOM.render((
     <BrowserRouter>
       <div style={{
         width: '960px',
-        margin: 'auto'
+        margin: 'auto',
       }}
       >
         <HeaderComponent />
@@ -38,5 +38,5 @@ ReactDOM.render((
 )
 
   /*<RegisterForm />*/
-, document.getElementById('root'));
+  , document.getElementById('root'));
 registerServiceWorker();

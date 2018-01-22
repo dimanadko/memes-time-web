@@ -51,16 +51,14 @@ const styles = {
     opacity: '0.9',
     mask: 'url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png")',
     maskSize: '3000% 100%',
-    border: '2px solid black',
     color: '#000',
-    cursor: 'pointer',
-    animation: 'ani2 0.7s 29 forwards'
+    animation: 'ani2 0.7s 29 forwards',
   },
 
-  '@keyframes ani2':{
-    from: {maskPosition: '0 0'},
-    to: {maskPosition: '100% 0'}
-  }
+  '@keyframes ani2': {
+    from: { maskPosition: '0 0' },
+    to: { maskPosition: '100% 0' },
+  },
 };
 
 class ChooseMeme extends Component {

@@ -11,7 +11,7 @@ const chosenMemeAction = Actions.chosenMemeAction;
 
 const styles = {
   memeCouple: {
-    padding: '0 0',
+    padding: '0 0 0 0',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     marginTop: '0',
@@ -21,8 +21,8 @@ const styles = {
       padding: '30px 10px',
       listStyleType: 'none',
       margin: 'auto',
-      marginBottom: '30px',
-      marginTop: '30px',
+      marginBottom: '15px',
+      marginTop: '15px',
       backgroundColor: '#2c3e50',
     },
   },
@@ -36,22 +36,31 @@ const styles = {
     width: '960px',
     backgroundColor: '#ecf0f1',
     height: '100%',
-    margin: 'auto',
+    marginTop: '0',
   },
   roflAble: {
     cursor: 'pointer',
     border: '2px solid #7f8c8d',
-    borderRadius: '2px',
     width: '18%',
     minWidth: '180px',
-    margin: 'auto',
+    marginLeft: '41%',
+    marginBottom: '1%',
     backgroundColor: 'white',
     textAlign: 'center',
+    fontSize: '20px',
     opacity: '0.9',
-    '&:hover': {
-      opacity: '1',
-    },
+    mask: 'url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png")',
+    maskSize: '3000% 100%',
+    border: '2px solid black',
+    color: '#000',
+    cursor: 'pointer',
+    animation: 'ani2 0.7s 29 forwards'
   },
+
+  '@keyframes ani2':{
+    from: {maskPosition: '0 0'},
+    to: {maskPosition: '100% 0'}
+  }
 };
 
 class ChooseMeme extends Component {
@@ -85,7 +94,7 @@ class ChooseMeme extends Component {
             ))
           }
         </ul>
-        <div
+        <button
           className={classes.roflAble}
           onClick={this.handleMemeClick.bind(
             this,
@@ -93,7 +102,7 @@ class ChooseMeme extends Component {
           )}
         >
           Both are ROFLable
-        </div>
+        </button>
       </div>
     );
   }

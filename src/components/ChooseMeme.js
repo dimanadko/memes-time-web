@@ -64,22 +64,33 @@ class ChooseMeme extends Component {
     this.props.onChooseMemePageDidMount();
   }
 
-  handleMemeClick(id) { //Here must a post dispatch happen
-    console.log(id);
-    this.props.onChosenMeme(id);
+  handleMemeClick(memeIds, id) { //Here must a post dispatch happen
+    console.log(Array.isArray(id));
+    const data = memeIds.map((memeId) => {
+      console.log({ memeId }, { id });
+      if (id.indexOf(memeId) === -1) {
+        return ({ '_id': memeId, clicked: false });
+      }
+      return ({ '_id': memeId, clicked: true });
+    });
+    console.log(data);
+    this.props.onChosenMeme(data);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, memeCouple } = this.props;
+    const memeIds = memeCouple.map(meme => meme.id);
+    console.log({ memeCouple });
+
     return (
       <div className={classes.memeChooserContainer}>
         <ul className={classes.memeCouple}>
           {
-            this.props.memeCouple.map(meme => (
+            memeCouple.map(meme => (
               <li key={meme.id}>
                 <img
                   src={meme.url} className={classes.memeImg}
-                  onClick={this.handleMemeClick.bind(this, [meme.id])}
+                  onClick={this.handleMemeClick.bind(this, memeIds, [meme.id])}
                 />
               </li>
             ))
@@ -89,7 +100,8 @@ class ChooseMeme extends Component {
           className={classes.roflAble}
           onClick={this.handleMemeClick.bind(
             this,
-            this.props.memeCouple.map(meme => meme.id)
+            memeIds,
+            memeIds,
           )}
         >
           Both are ROFLable

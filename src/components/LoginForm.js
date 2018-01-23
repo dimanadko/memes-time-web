@@ -119,10 +119,11 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
   onSignInClick: PropTypes.func,
+  sessionId: PropTypes.string,
 };
 
 export default connect(
-  () => (null),
+  () => ({}),
   dispatch => ({
     onSignInClick: (nickname, password) => {
       dispatch(signInAction(nickname, password));

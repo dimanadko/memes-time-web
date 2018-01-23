@@ -25,8 +25,8 @@ const Actions = {
     );
   },
 
-  chosenMemeAction: id => (dispatch) => {
-    console.log('memeCoupleAction' + id);
+  chosenMemeAction: (data, sessionId) => (dispatch) => {
+    console.log('memeCoupleAction' + data);
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -34,8 +34,8 @@ const Actions = {
     const myInit = {
       method: 'POST',
       body: JSON.stringify({
-        sessionId: '12345',
-        data: id,
+        sessionId,
+        data,
       }),
       headers,
     };
@@ -66,7 +66,7 @@ const Actions = {
         () => resolve({
           type: 'POST_LOGIN_INFO',
           data: {
-            sessionId: 12345,
+            sessionId: '12345',
             regStatus: 'authorized',
           },
         }), 1000

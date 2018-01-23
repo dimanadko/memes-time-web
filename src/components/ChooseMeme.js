@@ -81,7 +81,7 @@ class ChooseMeme extends Component {
       return ({ '_id': memeId, clicked: true });
     });
     console.log(data);
-    this.props.onChosenMeme(data);
+    this.props.onChosenMeme(data, this.props.sessionId);
   }
 
   render() {
@@ -123,16 +123,21 @@ ChooseMeme.propTypes = {
   memeCouple: PropTypes.array,
   onChooseMemePageDidMount: PropTypes.func,
   onChosenMeme: PropTypes.func,
+  sessionId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
 };
 
 
 export default connect(
   state => ({
+    sessionId: state.sessionInfo.sessionId,
     memeCouple: state.memeCouple,
   }),
   dispatch => ({
-    onChosenMeme: (id) => {
-      dispatch(chosenMemeAction(id));
+    onChosenMeme: (data, sessionId) => {
+      dispatch(chosenMemeAction(data, sessionId));
     },
     onChooseMemePageDidMount: () => {
       dispatch(memeCoupleAction);

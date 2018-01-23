@@ -148,24 +148,14 @@ class RegistrationForm extends React.Component {
             />
           </div>
           <div className={classes.buttonContainer}>
-            {this.state.similar ?
-              (
-                <button
-                  className={classes.signActive}
-                  onClick={this.click}
-                >
-                Log in
-                </button>
-              ) :
-              (
-                <button
-                  className={classes.sign}
-                  onClick={this.click}
-                >
-                Log in
-                </button>
-              )
-            }
+            <button
+              className={(this.state.similar ?
+                classes.signActive :
+                classes.sign)}
+              onClick={this.click}
+            >
+              Log in
+            </button>
           </div>
         </div>
       </div>

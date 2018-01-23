@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logo from './Clock.svg';
 import cock from './cock.svg';
 import image from './Cat.jpeg';
+import { Link } from 'react-router-dom';
 
 const styles = {
   header: {
@@ -54,12 +55,12 @@ class HeaderComponent extends Component {
               <span>Memes Time</span>
               <img  src={logo} />
             </div>
-            <div>
+            <Link to={{ pathname: '/login' }}>
               <img
                 src={cock}
                 className={classes.cock}
               />
-            </div>
+            </Link>
           </div>
           <div>
             <HeaderNav />

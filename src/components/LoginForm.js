@@ -2,12 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Actions from '../actions/index';
 
 const signInAction = Actions.signInAction;
 
 
 const styles = {
+  linkStyle: {
+    float: 'left',
+    height: '31px',
+    width: '200px',
+    color: '#2c3e50',
+    borderLeft: 0,
+    borderBottom: 0,
+    border: '1px solid',
+    paddingTop: '15px',
+    borderColor: '#7f8c8d',
+    textAlign: 'center',
+    textDecoration: 'none',
+    backgroundColor: '#ffff',
+    '&:last-child': {
+      borderTopRightRadius: '25px',
+    },
+  },
   buttonContainer: {
     margin: 'auto',
     marginBottom: '20px',
@@ -30,13 +48,16 @@ const styles = {
     marginTop: '10%',
     outline: 'none',
   },
+  signActive: {
+    composes: '$sign',
+    background: '#27ae60',
+  },
   main: {
-    height: '45vh',
+    height: '75vh',
     display: 'flex',
     flexDirection: 'column',
     flex: '0 1 auto',
-    background: 'white',
-    padding: '10% 20%',
+    background: '#ecf0f1',
   },
   label: {
     width: '30%',
@@ -63,6 +84,7 @@ class LoginForm extends React.Component {
     this.state = {
       nickname: '',
       password: '',
+      similar: false,
     };
     this.updateNickname.bind(this);
     this.updatePassword.bind(this);
@@ -71,14 +93,26 @@ class LoginForm extends React.Component {
 
   updateNickname = (e) => {
     this.setState({ nickname: e.target.value });
+    if ((e.target.value !== '') && (this.state.password !== '')) {
+      this.setState({ similar: true });
+    } else {
+      this.setState({ similar: false });
+    }
   };
 
   updatePassword = (e) => {
     this.setState({ password: e.target.value });
+    if ((e.target.value !== '') && (this.state.nickname !== '')) {
+      this.setState({ similar: true });
+    } else {
+      this.setState({ similar: false });
+    }
   };
 
   click = () => {
-    this.props.onSignInClick(this.state.nickname, this.state.password);
+    if (this.state.similar) {
+      this.props.onSignInClick(this.state.nickname, this.state.password);
+    } else { alert('Please enter Password or Nickname!'); }
   }
 
   render() {
@@ -108,11 +142,22 @@ class LoginForm extends React.Component {
             />
           </div>
           <div className={classes.buttonContainer}>
-            <button className={classes.sign} onClick={this.click}>
+            <button
+              className={(this.state.similar ?
+                classes.signActive :
+                classes.sign)}
+              onClick={this.click}
+            >
             Sign in
             </button>
           </div>
         </div>
+        <Link
+          className={classes.linkStyle}
+          to={{ pathname: '/registration' }}
+        >
+          You have no account registrated?
+        </Link>
       </div>
     );
   }

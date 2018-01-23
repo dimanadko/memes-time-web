@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const styles = {
   buttonContainer: {
     float: 'right',
     height: '100%',
     width: '400px',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
+    display: 'flex',
+    flexDirection: 'row-reverse',
+
   },
   linkStyle: {
+    width: '200px',
     color: '#2c3e50',
     borderRight: 0,
     borderBottom: 0,
@@ -21,7 +24,7 @@ const styles = {
     textAlign: 'center',
     textDecoration: 'none',
     backgroundColor: '#ffff',
-    '&:first-child': {
+    '&:last-child': {
       borderTopLeftRadius: '25px',
     },
   },
@@ -29,15 +32,20 @@ const styles = {
 
 class HeaderNav extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, regStatus } = this.props;
     return (
       <div className={classes.buttonContainer}>
-        <Link
-          className={classes.linkStyle}
-          to={{ pathname: '/' }}
-        >
-          Choose MEME
-        </Link>
+        {(regStatus !== 'user') ?
+          (
+            <Link
+              className={classes.linkStyle}
+              to={{ pathname: '/' }}
+            >
+              Choose MEME
+            </Link>
+          ) :
+          (<Fragment />)
+        }
         <Link
           className={classes.linkStyle}
           to={{ pathname: '/stats' }}
@@ -51,7 +59,13 @@ class HeaderNav extends Component {
 
 HeaderNav.propTypes = {
   classes: PropTypes.object.isRequired,
+  regStatus: PropTypes.string,
 };
 
 
-export default (injectSheet(styles)(HeaderNav));
+export default connect(
+  state => ({
+    regStatus: state.sessionInfo.regStatus,
+  }),
+  () => ({}),
+)(injectSheet(styles)(HeaderNav));

@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
+import { connect } from 'react-redux';
+import Actions from '../actions/index';
+
+const signInAction = Actions.signInAction;
+
 
 const styles = {
   buttonContainer: {
-    paddingRight: '10%',
-    marginLeft: '10%',
+    margin: 'auto',
+    width: '50%',
   },
   container: {
+    borderRadius: '10px',
     width: '400px',
     background: '#2c3e50',
     height: '150px',
@@ -15,13 +21,13 @@ const styles = {
     margin: 'auto',
   },
   sign: {
-    background: 'black',
+    background: '#c0392b',
     color: 'white',
     width: '100%',
     height: '100%',
     fontSize: '25px',
-    marginTop: '5%',
-    marginRight: '5%',
+    marginTop: '10%',
+    outline: 'none',
   },
   main: {
     height: '45vh',
@@ -34,6 +40,7 @@ const styles = {
   label: {
     width: '30%',
     marginLeft: '5%',
+    color: '#ecf0f1',
   },
   loginContainer: {
     display: 'flex',
@@ -41,31 +48,36 @@ const styles = {
     marginTop: '10px',
     marginLeft: '10%',
   },
+  input: {
+    width: '150px',
+    outline: 'white',
+    outlineWidth: '2px',
+    outlineStyle: 'solid',
+  },
 };
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      checked: false,
+      nickname: '',
+      password: '',
     };
-    this.updateFirstName.bind(this);
-    this.updateLastName.bind(this);
+    this.updateNickname.bind(this);
+    this.updatePassword.bind(this);
     this.click.bind(this);
   }
 
-  updateFirstName = (e) => {
-    this.setState({ firstName: e.target.value });
+  updateNickname = (e) => {
+    this.setState({ nickname: e.target.value });
   };
 
-  updateLastName = (e) => {
-    this.setState({ lastName: e.target.value });
+  updatePassword = (e) => {
+    this.setState({ password: e.target.value });
   };
 
-  click = (e) => {
-    this.setState({ checked: e.target.value });
+  click = () => {
+    this.props.onSignInClick(this.state.nickname, this.state.password);
   }
 
   render() {
@@ -75,18 +87,23 @@ class LoginForm extends React.Component {
         <div className={classes.container}>
           <div className={classes.loginContainer}>
             <div className={classes.label}>
-              <span>First name: </span>
+              <span>Nickname: </span>
             </div>
             <input
-              text={this.state.firstName}
-              onChange={this.updateFirstName}
+              className={classes.input}
+              text={this.state.nickname}
+              onChange={this.updateNickname}
             />
           </div>
           <div className={classes.loginContainer}>
             <div className={classes.label}>
-              <span>Last name: </span>
+              <span>Password: </span>
             </div>
-            <input text={this.state.firstName} onChange={this.updateLastName} />
+            <input
+              className={classes.input}
+              text={this.state.Nickname}
+              onChange={this.updatePassword}
+            />
           </div>
           <div className={classes.buttonContainer}>
             <button className={classes.sign} onClick={this.click}>
@@ -101,6 +118,14 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
+  onSignInClick: PropTypes.func,
 };
 
-export default injectSheet(styles)(LoginForm);
+export default connect(
+  () => (null),
+  dispatch => ({
+    onSignInClick: (nickname, password) => {
+      dispatch(signInAction(nickname, password));
+    },
+  })
+)(injectSheet(styles)(LoginForm));

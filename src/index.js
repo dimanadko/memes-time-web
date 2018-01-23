@@ -8,12 +8,13 @@ import React from 'react';
 
 import HeaderComponent from './components/Header/HeaderComponent.js';
 import registerServiceWorker from './registerServiceWorker';
+import LoginForm from './components/LoginForm.js';
 import ChooseMeme from './components/ChooseMeme';
+import StatsList from './components/Stats.js';
 import Footer from './components/Footer';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
 import './index.css';
-import LoginForm from './components/LoginForm.js';
 
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
@@ -30,6 +31,7 @@ ReactDOM.render((
         <Switch>
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={ChooseMeme} />
+          <Route exact path="/stats" component={StatsList} />
         </Switch>
         <Footer />
       </div>

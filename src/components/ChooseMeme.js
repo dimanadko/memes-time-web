@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
 import Actions from '../actions/index';
@@ -67,8 +68,12 @@ class ChooseMeme extends Component {
   }
 
   componentDidMount() {
-    console.log('dispatch must has happened');
-    this.props.onChooseMemePageDidMount();
+    if (this.props.sessionId) {
+      console.log('dispatch must has happened');
+      this.props.onChooseMemePageDidMount();
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   handleMemeClick(memeIds, id) { //Here must a post dispatch happen
@@ -127,10 +132,11 @@ ChooseMeme.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
+  history: PropTypes.object,
 };
 
 
-export default connect(
+export default withRouter(connect(
   state => ({
     sessionId: state.sessionInfo.sessionId,
     memeCouple: state.memeCouple,
@@ -143,4 +149,4 @@ export default connect(
       dispatch(memeCoupleAction);
     },
   })
-)(injectSheet(styles)(ChooseMeme));
+)(injectSheet(styles)(ChooseMeme)));

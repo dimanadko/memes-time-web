@@ -9,6 +9,7 @@ import React from 'react';
 import HeaderComponent from './components/Header/HeaderComponent.js';
 import registerServiceWorker from './registerServiceWorker';
 import ChooseMeme from './components/ChooseMeme';
+import RegistrationForm from './components/RegistrationForm';
 import Footer from './components/Footer';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
@@ -28,6 +29,7 @@ ReactDOM.render((
       >
         <HeaderComponent />
         <Switch>
+          <Route path="/registration" component={RegistrationForm} />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/" component={ChooseMeme} />
         </Switch>

@@ -17,7 +17,6 @@ const styles = {
     borderRadius: '10px',
     width: '400px',
     background: '#2c3e50',
-    height: 'fitContent',
     paddingTop: '30px',
     margin: 'auto',
   },
@@ -30,13 +29,17 @@ const styles = {
     marginTop: '10%',
     outline: 'none',
   },
+  signActive: {
+    composes: '$sign',
+    background: '#27ae60',
+  },
   main: {
-    height: '45vh',
+    verticalAlign: 'center',
+    height: '75vh',
     display: 'flex',
     flexDirection: 'column',
     flex: '0 1 auto',
-    background: 'white',
-    padding: '10% 20%',
+    background: '#ecf0f1',
   },
   label: {
     width: '30%',
@@ -57,12 +60,14 @@ const styles = {
   },
 };
 
-class LoginForm extends React.Component {
+class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       nickname: '',
       password: '',
+      repeatPassword: '',
+      similar: false,
     };
     this.updateNickname.bind(this);
     this.updatePassword.bind(this);
@@ -71,15 +76,39 @@ class LoginForm extends React.Component {
 
   updateNickname = (e) => {
     this.setState({ nickname: e.target.value });
+    if ((e.target.value !== '') &&
+    (this.state.repeatPassword === this.state.password)) {
+      this.setState({
+        similar: true,
+      });
+    } else { this.setState({ similar: false }); }
   };
 
   updatePassword = (e) => {
     this.setState({ password: e.target.value });
+    if ((this.state.repeatPassword === e.target.value) &&
+    (this.state.nickname !== '')) {
+      this.setState({
+        similar: true,
+      });
+    } else { this.setState({ similar: false }); }
+  };
+
+  updateRepeatPassword = (e) => {
+    this.setState({ repeatPassword: e.target.value });
+    if ((e.target.value === this.state.password) &&
+    (this.state.nickname !== '')) {
+      this.setState({ similar: true });
+    } else { this.setState({ similar: false }); }
   };
 
   click = () => {
-    this.props.onSignInClick(this.state.nickname, this.state.password);
-  }
+    if (this.state.nickname === '') {
+      alert('Nickname is required!');
+    } else if (this.state.similar) {
+      this.props.onSignInClick(this.state.nickname, this.state.password);
+    } else { alert('Password are not similar!'); }
+  };
 
   render() {
     const { classes } = this.props;
@@ -107,10 +136,36 @@ class LoginForm extends React.Component {
               onChange={this.updatePassword}
             />
           </div>
+          <div className={classes.loginContainer}>
+            <div className={classes.label}>
+              <span>Repeat the password: </span>
+            </div>
+            <input
+              type="password"
+              className={classes.input}
+              value={this.state.repeatPassword}
+              onChange={this.updateRepeatPassword}
+            />
+          </div>
           <div className={classes.buttonContainer}>
-            <button className={classes.sign} onClick={this.click}>
-            Sign in
-            </button>
+            {this.state.similar ?
+              (
+                <button
+                  className={classes.signActive}
+                  onClick={this.click}
+                >
+                Log in
+                </button>
+              ) :
+              (
+                <button
+                  className={classes.sign}
+                  onClick={this.click}
+                >
+                Log in
+                </button>
+              )
+            }
           </div>
         </div>
       </div>
@@ -118,7 +173,7 @@ class LoginForm extends React.Component {
   }
 }
 
-LoginForm.propTypes = {
+RegistrationForm.propTypes = {
   classes: PropTypes.object.isRequired,
   onSignInClick: PropTypes.func,
   sessionId: PropTypes.string,
@@ -131,4 +186,4 @@ export default connect(
       dispatch(signInAction(nickname, password));
     },
   })
-)(injectSheet(styles)(LoginForm));
+)(injectSheet(styles)(RegistrationForm));

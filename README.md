@@ -1,5 +1,5 @@
 # Memes Time 🕓
-This is an App created for Int20h Hackaton qualification. Here you get random memes from Reddit(one hundred memes a time). 
+This is an App created for [Int20h Hackathon](http://int20h.best-kyiv.org/) qualification. Here you get random memes from Reddit(one hundred memes a time). 
 Admin can update memes DataBase. 
 Authorized users can visit page were they can choose memes do their job(decide which one is better).
 Not authorized can check out memes stats to see witch one is better.

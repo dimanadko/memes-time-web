@@ -40,10 +40,10 @@
     "/loginVerify": {
       "target": "http://35.198.93.79"
     },
-    "/getMemesStats":{
+    "/getMemesStats": {
       "target": "http://35.198.93.79"
     },
-    "updateMemesDb":{
+    "updateMemesDb": {
       "target": "http://35.198.93.79"
     }
   }

@@ -36,7 +36,6 @@ const styles = {
     verticalAlign: 'center',
     width: '960px',
     backgroundColor: '#ecf0f1',
-    height: '100%',
     marginTop: '0',
   },
   roflAble: {

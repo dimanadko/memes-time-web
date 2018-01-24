@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 import Actions from '../actions/index';
 
-const signInAction = Actions.signInAction;
+const registrationAction = Actions.registrationAction;
 
 
 const styles = {
@@ -173,7 +173,7 @@ export default connect(
   () => ({}),
   dispatch => ({
     onSignInClick: (nickname, password) => {
-      dispatch(signInAction(nickname, password));
+      dispatch(registrationAction(nickname, password));
     },
   })
 )(injectSheet(styles)(RegistrationForm));

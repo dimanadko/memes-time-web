@@ -45,6 +45,13 @@ const Actions = {
       return response.json();
     }).then(
       (result) => {
+        console.log(result);
+        if (result.error) {
+          alert('Your session time is out. Need authorization!');
+          dispatch({
+            type: 'LOG_OUT',
+          });
+        }
         const memes = result['frontMemes'].map(meme => ({
           'id': meme._id,
           'url': meme.url,
@@ -60,21 +67,90 @@ const Actions = {
   },
 
   signInAction: (nickname, password) => (dispatch) => {
-    const promise = new Promise((resolve) => {
-      console.log({ nickname, password });
-      setTimeout(
-        () => resolve({
+
+    console.log('signInAction: ' + nickname + ' : ' + password);
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const myInit = {
+      method: 'POST',
+      body: JSON.stringify({
+        credentials: {
+          login: nickname,
+          password,
+        },
+      }),
+      headers,
+    };
+
+    fetch('/loginVerify', myInit).then((response) => {
+      console.log('Fetch');
+      return response.json();
+    }).then(
+      (result) => {
+        if (!result.authenticated.sessionId) {
+          alert('You need to log in!');
+        }
+        const dispatchAbleSessionInfo = {
           type: 'POST_LOGIN_INFO',
-          data: {
-            sessionId: '12345',
-            regStatus: 'authorized',
-          },
-        }), 1000
-      );
-    });
-    promise.then(res => (dispatch(res)));
+          data: result.authenticated,
+        };
+        console.log(dispatchAbleSessionInfo);
+        dispatch(dispatchAbleSessionInfo);
+      }
+    ).catch(err => console.log(err));
   },
 
+  registrationAction: (nickname, password) => (dispatch) => {
+
+    console.log('registrationAction: ' + nickname + ' : ' + password);
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const myInit = {
+      method: 'POST',
+      body: JSON.stringify({
+        credentials: {
+          login: nickname,
+          password,
+        },
+      }),
+      headers,
+    };
+
+    fetch('/handleRegistration', myInit).then((response) => {
+      console.log('Fetch');
+      return response.json();
+    }).then(
+      (result) => {
+        const dispatchAbleSessionInfo = {
+          type: 'POST_LOGIN_INFO',
+          data: result,
+        };
+        console.log(dispatchAbleSessionInfo);
+        dispatch(dispatchAbleSessionInfo);
+      }
+    ).catch(err => console.log(err));
+  },
+  logOutAction: {
+    type: 'LOG_OUT',
+  },
+  getMemesStats: (dispatch) => {
+    fetch('/getMemesStats').then((response) => {
+      console.log('getMemesStats Fetched');
+      return response.json();
+    }).then(
+      (result) => {
+        const dispatchAbleMemesStats = {
+          type: 'FETCH_MEME_STATS',
+          data: result.memes.sort((a, b) => b.rating - a.rating),
+        };
+        dispatch(dispatchAbleMemesStats);
+      }
+    );
+  },
 };
 
 export default Actions;

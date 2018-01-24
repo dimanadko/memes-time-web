@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-image-lightbox": "^4.5.0",
     "react-jss": "^8.2.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
@@ -31,7 +32,19 @@
   },
   "proxy": {
     "/getMemes": {
-      "target": "http://10.2.0.118:3000"
+      "target": "http://35.198.93.79"
+    },
+    "/handleRegistration": {
+      "target": "http://35.198.93.79"
+    },
+    "/loginVerify": {
+      "target": "http://35.198.93.79"
+    },
+    "/getMemesStats":{
+      "target": "http://35.198.93.79"
+    },
+    "updateMemesDb":{
+      "target": "http://35.198.93.79"
     }
   }
 }

@@ -10,9 +10,11 @@ const signInAction = Actions.signInAction;
 
 const styles = {
   linkStyle: {
+    paddingLeft: '20px',
+    paddingRight: '20px',
     float: 'left',
     height: '31px',
-    width: '200px',
+    width: 'fit-content',
     color: '#2c3e50',
     borderLeft: 0,
     borderBottom: 0,

@@ -22,7 +22,7 @@ const styles = {
     borderRight: 0,
     borderBottom: 0,
     border: '1px solid',
-    paddingTop: '15px',
+    paddingTop: '1.5vh',
     borderColor: '#7f8c8d',
     textAlign: 'center',
     textDecoration: 'none',

@@ -37,6 +37,7 @@ const styles = {
     width: '960px',
     backgroundColor: '#ecf0f1',
     marginTop: '0',
+    height: '74vh',
   },
   roflAble: {
     cursor: 'pointer',

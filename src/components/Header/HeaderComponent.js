@@ -18,14 +18,14 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 3fr',
     borderBottom: '2px solid #7f8c8d',
-    height: '160px',
+    height: '16vh',
     '& span': {
-      fontSize: '70px',
+      fontSize: '7vh',
       color: 'white',
     },
   },
   sideLogo: {
-    height: '140px',
+    height: '14vh',
     borderRadius: '80px',
     marginTop: '3%',
     marginLeft: '20%',
@@ -42,14 +42,14 @@ const styles = {
   cock: {
     marginTop: '5px',
     marginRight: '5px',
-    height: '50px',
+    height: '5vh',
     float: 'right',
     color: '#7f8c8d',
   },
   Link: {
     float: 'right',
-    height: '60px',
-    width: '60px',
+    height: '6vh',
+    width: '6vh',
   },
 };
 

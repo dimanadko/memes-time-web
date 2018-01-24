@@ -6,7 +6,7 @@ const styles = {
   Footer: {
     left: '0',
     bottom: '0',
-    height: '100px',
+    height: '10vh',
     backgroundColor: '#c0392b',
     borderTop: '2px solid #7f8c8d',
   },

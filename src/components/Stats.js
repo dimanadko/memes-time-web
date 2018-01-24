@@ -13,11 +13,12 @@ const getMemesStats = Actions.getMemesStats;
 
 const styles = {
   statsContainer: {
-    padding: '30px 10%',
+    padding: '2vh 10%',
     backgroundColor: '#ecf0f1',
+    height: '74vh',
   },
   table: {
-    height: '530px',
+    height: '70vh',
     backgroundColor: '#ffff',
     overflowY: 'visible',
     overflowX: 'hidden',
@@ -37,7 +38,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-around',
     textAlign: 'center',
-    height: '30px',
+    height: '3vh',
     margin: 'auto',
     background: '#2980b9',
     '& >:last-child': {

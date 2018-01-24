@@ -1,3 +1,21 @@
+# Memes Time 🕓
+This is an App created for Kiev Hacaton qualification. Here you get random memes from Reddit(one hundred memes a time). 
+Admin can update memes DataBase. 
+Authorized users can visit page were they can choose memes do their job(decide witch one is better).
+Not authorized can check out memes stats to see witch one is better.
+Using information from authorized users server generate memes stats.
+You can create your personal account in /registration page. 
+
+# Backend
+Server repository [server](https://github.com/o-rumiantsev/Memes/)
+
+# Technological Stack
+- React
+- Redux
+- Jss
+- Express
+- Mongo DB
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
 import Actions from '../actions/index';
@@ -70,13 +70,14 @@ class ChooseMeme extends Component {
   componentDidMount() {
     if (this.props.sessionId) {
       console.log('dispatch must has happened');
-      this.props.onChooseMemePageDidMount();
+      this.props.onChosenMeme(null, this.props.sessionId);
     } else {
       this.props.history.push('/login');
     }
   }
 
   handleMemeClick(memeIds, id) { //Here must a post dispatch happen
+    if (!this.props.sessionId) { this.props.history.push('/login'); }
     console.log(Array.isArray(id));
     const data = memeIds.map((memeId) => {
       console.log({ memeId }, { id });
@@ -90,7 +91,7 @@ class ChooseMeme extends Component {
   }
 
   render() {
-    const { classes, memeCouple } = this.props;
+    const { classes, memeCouple, sessionId } = this.props;
     const memeIds = memeCouple.map(meme => meme.id);
     console.log({ memeCouple });
 
@@ -118,6 +119,7 @@ class ChooseMeme extends Component {
         >
           Both are ROFLable
         </button>
+        {!sessionId ? <Redirect to={{ pathname: '/login' }} /> : <Fragment />}
       </div>
     );
   }

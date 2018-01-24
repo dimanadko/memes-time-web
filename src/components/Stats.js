@@ -2,39 +2,14 @@ import React, { Component, Fragment } from 'react';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
+import { connect } from 'react-redux';
 
-const memesArray = [
-  {
-    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhr0w0RJMGJTLlyKedP9Sf_FzZRRIVMi3QqHHP0lVY8tkjZoQroA',
-    _id: 1,
-    rating: 15,
-  },
-  {
-    url: 'https://www.saturdaydownsouth.com/wp-content/uploads/2017/09/21764969_10214625654178963_2740357915962522351_n-1-718x490.jpg',
-    _id: 2,
-    rating: 3,
-  },
-  {
-    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdvtRdDaNhI8VPJJVeP7Qp4RCan-sjTtvoxuENP6dI96AWnusXLQ',
-    _id: 3,
-    rating: 10,
-  },
-  {
-    url: 'http://memepedia.ru/wp-content/uploads/2017/05/25b86b8679748c4e23b34996b8fa0153.jpg',
-    _id: 4,
-    rating: 20,
-  },
-  {
-    url: 'http://www.abc.net.au/news/image/7797710-1x1-940x940.jpg',
-    _id: 5,
-    rating: 1,
-  },
-  {
-    url: 'https://heavyeditorial.files.wordpress.com/2017/08/screen-shot-2017-08-18-at-12-42-31-pm.jpg?quality=65&strip=all&strip=all',
-    _id: 6,
-    rating: 23,
-  },
-];
+import Actions from '../actions/index';
+
+const getMemesStats = Actions.getMemesStats;
+
+
+
 
 const styles = {
   statsContainer: {
@@ -119,9 +94,7 @@ const styles = {
   },
 };
 
-const sortFunction = (a, b) => b.rating - a.rating;
 
-memesArray.sort(sortFunction);
 
 class StatsList extends Component {
   constructor(props) {
@@ -133,11 +106,11 @@ class StatsList extends Component {
   }
 
   componentDidMount() {
-    memesArray.sort(sortFunction);
+    this.props.onStatsPageDidMount();
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, memesArray } = this.props;
     const { photoIndex, isOpen } = this.state;
     const images = memesArray.map(meme => meme.url);
     console.log(images);
@@ -205,10 +178,21 @@ class StatsList extends Component {
 
 StatsList.propTypes = {
   classes: PropTypes.object.isRequired,
+  onStatsPageDidMount: PropTypes.func,
+  memesArray: PropTypes.array,
 };
 
 
-export default injectSheet(styles)(StatsList);
+export default connect(
+  state => ({
+    memesArray: state.memesStats,
+  }),
+  dispatch => ({
+    onStatsPageDidMount: () => {
+      dispatch(getMemesStats);
+    },
+  })
+)(injectSheet(styles)(StatsList));
 
 /*import LoginForm from './components/LoginForm.js';
 import StatsList from './components/Stats.js';

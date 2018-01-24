@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+
 const styles = {
   buttonContainer: {
     float: 'right',
@@ -14,7 +15,9 @@ const styles = {
 
   },
   linkStyle: {
-    width: '200px',
+    cursor: 'pointer',
+    maxWidth: '200px',
+    width: 'fill-available',
     color: '#2c3e50',
     borderRight: 0,
     borderBottom: 0,
@@ -31,8 +34,29 @@ const styles = {
 };
 
 class HeaderNav extends Component {
+
+  onUpdateButtonClick(sessionId) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const myInit = {
+      method: 'POST',
+      body: JSON.stringify({
+        sessionId,
+      }),
+      headers,
+    };
+
+    fetch('/updateMemesDb', myInit).then((response) => {
+      console.log(response);
+      alert('Memes DB has been updated ' +
+      (response.status === 200 ? 'successfully' : 'unsuccessfully') + ' !');
+    });
+
+  }
+
   render() {
-    const { classes, regStatus } = this.props;
+    const { classes, regStatus, sessionId } = this.props;
     return (
       <div className={classes.buttonContainer}>
         {(regStatus !== 'user') ?
@@ -52,6 +76,17 @@ class HeaderNav extends Component {
         >
           Check out Stats
         </Link>
+        {(regStatus === 'admin') ?
+          (
+            <div
+              className={classes.linkStyle}
+              onClick={this.onUpdateButtonClick.bind(this, sessionId)}
+            >
+              Update Memes DB
+            </div>
+          ) :
+          (<Fragment />)
+        }
       </div>
     );
   }
@@ -60,12 +95,14 @@ class HeaderNav extends Component {
 HeaderNav.propTypes = {
   classes: PropTypes.object.isRequired,
   regStatus: PropTypes.string,
+  sessionId: PropTypes.string,
 };
 
 
 export default connect(
   state => ({
     regStatus: state.sessionInfo.regStatus,
+    sessionId: state.sessionInfo.sessionId,
   }),
   () => ({}),
 )(injectSheet(styles)(HeaderNav));

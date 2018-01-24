@@ -1,13 +1,13 @@
 # Memes Time 🕓
-This is an App created for Kiev Hacaton qualification. Here you get random memes from Reddit(one hundred memes a time). 
+This is an App created for Int20h Hackaton qualification. Here you get random memes from Reddit(one hundred memes a time). 
 Admin can update memes DataBase. 
-Authorized users can visit page were they can choose memes do their job(decide witch one is better).
+Authorized users can visit page were they can choose memes do their job(decide which one is better).
 Not authorized can check out memes stats to see witch one is better.
 Using information from authorized users server generate memes stats.
 You can create your personal account in /registration page. 
 
 # Backend
-Server repository [server](https://github.com/o-rumiantsev/Memes/)
+[Server repository](https://github.com/o-rumiantsev/Memes/)
 
 # Technological Stack
 - React

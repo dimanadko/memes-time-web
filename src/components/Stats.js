@@ -110,11 +110,35 @@ class StatsList extends Component {
     this.props.onStatsPageDidMount();
   }
 
+  handleImgClick = index => () => {
+    console.log('isOpen: true; index: ' + index);
+    this.setState({
+      isOpen: true,
+      photoIndex: index,
+    });
+  }
+
   render() {
     const { classes, memesArray } = this.props;
     const { photoIndex, isOpen } = this.state;
     const images = memesArray.map(meme => meme.url);
-    console.log(images);
+    const memeLi = memesArray.map((meme, i) => (
+      <li className={classes.listRow} key={meme._id}>
+        <div className={classes.memeImg}>
+          <img
+            className={classes.image}
+            src={meme.url}
+            onClick={this.handleImgClick(i)}
+          />
+        </div>
+        <div className={classes.url}>
+          <a href={meme.url} className={classes.a}>{meme.url}</a>
+        </div>
+        <div className={classes.memeRate}>
+          <span>{meme.rating}</span>
+        </div>
+      </li>
+    ));
     return (
       <div className={classes.statsContainer}>
 
@@ -133,26 +157,7 @@ class StatsList extends Component {
         <div className={classes.table}>
           <ul className={classes.ul}>
             {
-              memesArray.map(meme => (
-                <li className={classes.listRow} key={meme._id}>
-                  <div className={classes.memeImg}>
-                    <img
-                      className={classes.image}
-                      src={meme.url}
-                      onClick={() => {
-                        console.log('isOpen: true');
-                        this.setState({ isOpen: true });
-                      }}
-                    />
-                  </div>
-                  <div className={classes.url}>
-                    <a href={meme.url} className={classes.a}>{meme.url}</a>
-                  </div>
-                  <div className={classes.memeRate}>
-                    <span>{meme.rating}</span>
-                  </div>
-                </li>
-              ))
+              memeLi
             }
           </ul>
         </div>
